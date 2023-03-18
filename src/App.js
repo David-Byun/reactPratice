@@ -11,6 +11,7 @@ function App() {
   ]);
   let [따봉, 따봉변경] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
+  let [title, setTitle] = useState(0);
 
   return (
     <div className="App">
@@ -33,7 +34,7 @@ function App() {
       >
         버튼
       </button>
-      {/* <div className="list">
+      <div className="list">
         <h4>
           {글제목[0]}
           <span
@@ -57,7 +58,7 @@ function App() {
           {글제목[2]}
         </h4>
         <p>2월 17일 발행</p>
-      </div> */}
+      </div>
       {글제목.map(function (a, i) {
         return (
           <div className="list" key={i}>
@@ -77,7 +78,11 @@ function App() {
           </div>
         );
       })}
-      {modal == true ? <Modal /> : ''}
+      {modal == true ? (
+        <Modal 글제목={글제목} title={글제목[i]} color={'yellow'} />
+      ) : (
+        ''
+      )}
     </div>
   );
 }
@@ -88,14 +93,22 @@ const Nav = () => {
     </div>
   );
 };
-function Modal() {
-  return (
-    <div className="modal">
-      <h4>제목</h4>
-      <p>날짜</p>
-      <p>상세내용</p>
-    </div>
-  );
+
+function 함수() {
+  let a = 10;
+}
+
+function Modal(props) {
+  return props.글제목.map((a, i) => {
+    return (
+      <div className="modal" key={i}>
+        <h4>{props.글제목[props.title]}</h4>
+        <p>날짜</p>
+        <p>상세내용</p>
+        <button>글수정</button>
+      </div>
+    );
+  });
 }
 
 export default App;
